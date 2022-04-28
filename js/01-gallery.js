@@ -5,9 +5,7 @@ const galleryContainer = document.querySelector(".gallery");
 
 const galleryItemsCard = galleryItems
   .map(({ preview, original, description }) => {
-    galleryContainer.insertAdjacentHTML(
-      "afterbegin",
-      `<div class="gallery__item">
+    return `<div class="gallery__item">
   <a class="gallery__link" href=${original}>
     <img
       class="gallery__image"
@@ -16,10 +14,11 @@ const galleryItemsCard = galleryItems
       alt=${description}
     />
   </a>
-</div>`
-    );
+</div>`;
   })
   .join("");
+
+galleryContainer.insertAdjacentHTML("afterbegin", galleryItemsCard);
 
 const onOpenInModalCard = (event) => {
   event.preventDefault();
