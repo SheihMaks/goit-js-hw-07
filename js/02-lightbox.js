@@ -19,22 +19,16 @@ const onOpenInModalCard = (event) => {
   if (!event.target.classList.contains("gallery__image")) {
     return;
   }
-  var lightbox = new SimpleLightbox(".gallery a", {
-    //   delay(500ms); captionsData,
-  });
-  window.addEventListener("keydown", onCloseModalByEsc);
-  //   onCreateCardInModal();
+  onCreateCardInModal();
 };
 
-// function onCreateCardInModal() {
+let lightbox = new SimpleLightbox(".gallery a", {
+  captionDelay: 250,
+  captionsData: "alt",
+});
 
-// }
-
-function onCloseModalByEsc(event) {
-  if (event.code === "Escape") {
-    // lightbox.close();
-    window.removeEventListener("keydown", onCloseModalByEsc);
-  }
+function onCreateCardInModal() {
+  lightbox.on("show.SimpleLightbox");
 }
 
 galleryContainer.addEventListener("click", onOpenInModalCard);
