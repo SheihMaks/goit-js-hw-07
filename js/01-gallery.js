@@ -31,17 +31,25 @@ const onOpenInModalCard = (event) => {
 let instance = null;
 
 function onCreateCardInModal(link) {
-  instance = basicLightbox.create(`
+  instance = basicLightbox.create(
+    `
     <img src="${link}" class="gallery__image">
-`);
+`,
+    {
+      onShow: (instance) => {
+        window.addEventListener("keydown", onCloseModalByEsc);
+      },
+      onClose: (instance) => {
+        window.removeEventListener("keydown", onCloseModalByEsc);
+      },
+    }
+  );
   instance.show();
-  window.addEventListener("keydown", onCloseModalByEsc);
 }
 
 function onCloseModalByEsc(event) {
   if (event.code === "Escape") {
     instance.close();
-    window.removeEventListener("keydown", onCloseModalByEsc);
   }
 }
 

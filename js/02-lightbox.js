@@ -13,21 +13,8 @@ const galleryItemsCard = galleryItems
 
 galleryContainer.insertAdjacentHTML("afterbegin", galleryItemsCard);
 
-const onOpenInModalCard = (event) => {
-  event.preventDefault();
-  if (!event.target.classList.contains("gallery__image")) {
-    return;
-  }
-  onCreateCardInModal();
-};
-
 let lightbox = new SimpleLightbox(".gallery a", {
   captionDelay: 250,
   captionsData: "alt",
 });
-
-function onCreateCardInModal() {
-  lightbox.on("show.SimpleLightbox");
-}
-
-galleryContainer.addEventListener("click", onOpenInModalCard);
+lightbox.on();
